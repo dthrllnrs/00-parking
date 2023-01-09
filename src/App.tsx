@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ParkingInitForm from './components/ParkingInitForm';
+import ParkingLot from './components/ParkingLot';
 import './App.css';
+import ISlot from './classes/ISlot';
 
 function App() {
+  const [validInput, setValidInput] = useState<boolean>(false);
+  const [gridProps, setGridProps] = useState<any>({});
+
+  const handleValidInput = (x: number, y: number, entrances: ISlot[]) => {
+    setGridProps({
+      x,
+      y,
+      entrances
+    })
+
+    setValidInput(true);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mt-5">
+      {
+        validInput ? <ParkingLot x={gridProps.x} y={gridProps.y} entrances={gridProps.entrances}/> :
+          <ParkingInitForm handleValidInput={handleValidInput}></ParkingInitForm>
+      }
     </div>
   );
 }

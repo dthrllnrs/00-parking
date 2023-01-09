@@ -6,6 +6,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "bootstrap/dist/js/bootstrap" : ["./node_modules/types/bootstrap"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
